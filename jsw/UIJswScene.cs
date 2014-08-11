@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Sce.PlayStation.Core;
 using Sce.PlayStation.Core.Imaging;
@@ -17,6 +18,8 @@ namespace jsw
 		private UIColor cRed 	= new UIColor(0.9f,0.1f,0.1f,1f);
 		//--------------
 		
+		private Hashtable btn_hash = new Hashtable();
+		
         public UIJswScene()
         {
             InitializeWidget();
@@ -24,32 +27,32 @@ namespace jsw
 			
 			Button_prefs.BackgroundFilterColor = new UIColor(0.2f,0.9f,0.9f,1f);
 			
-			Init_Button(Button_1,cBlue);
-			Init_Button(Button_2,cBlue);
-			Init_Button(Button_3,cBlue);
-			Init_Button(Button_4,cBlue);
-			Init_Button(Button_5,cBlue);
-			Init_Button(Button_6,cBlue);
-			Init_Button(Button_7,cBlue);
-			Init_Button(Button_8,cBlue);
-			Init_Button(Button_9,cBlue);
-			Init_Button(Button_NXT,cBlue);
+			Init_Button(Button_1,cBlue,"set('wpidx',0)");
+			Init_Button(Button_2,cBlue,"set('wpidx',1)");
+			Init_Button(Button_3,cBlue,"set('wpidx',2)");
+			Init_Button(Button_4,cBlue,"set('wpidx',3)");
+			Init_Button(Button_5,cBlue,"set('wpidx',4)");
+			Init_Button(Button_6,cBlue,"set('wpidx',5)");
+			Init_Button(Button_7,cBlue,"set('wpidx',6)");
+			Init_Button(Button_8,cBlue,"set('wpidx',7)");
+			Init_Button(Button_9,cBlue,"set('wpidx',8)");
+			Init_Button(Button_NXT,cBlue,"set('wpidx',wpidx+1)");
 			
-			Init_Button(Button_LD,cYellow);
-			Init_Button(Button_TO,cYellow);
-			Init_Button(Button_Cancel,cGreen);
+			Init_Button(Button_LD,cYellow,"set('mode',LANDING)");
+			Init_Button(Button_TO,cYellow,"set('mode',TAKEOFF)");
+			Init_Button(Button_Cancel,cGreen,"set('stage',100)");
 			
-			Init_Button(Button_STBY,cBlue);
+			Init_Button(Button_STBY,cBlue,"set('mode',STBY)");
 
-			Init_Button(Button_HOME,cBrown);
-			Init_Button(Button_UAV,cBrown);
-			Init_Button(Button_RPV,cBrown);
+			Init_Button(Button_HOME,cBrown,"set('mode',HOME)");
+			Init_Button(Button_UAV,cBrown,"set('mode',UAV)");
+			Init_Button(Button_RPV,cBrown,"set('mode',RPV)");
 			
-			Init_Button(Button_EMG,cRed);
-			Init_Button(Button_IGN,cRed);
+			Init_Button(Button_EMG,cRed,"set('mode',EMG)");
+			Init_Button(Button_IGN,cRed,"set('power_ignition',!power_ignition)");
 
-			Init_Button(Button_OVR,cRed);
-			Init_Button(Button_CUT,cRed);
+			Init_Button(Button_OVR,cRed,"set('cmode_thrcut',!cmode_thrcut)");
+			Init_Button(Button_CUT,cRed,"set('cmode_throvr',!cmode_throvr)");
             Slider_Thr.ValueChanged += new EventHandler<SliderValueChangeEventArgs>(Slider_Action);
 
 			SettingDialog = new UISettingDialog();
@@ -57,10 +60,11 @@ namespace jsw
             Button_Quit.ButtonAction += new EventHandler<TouchEventArgs>(Button_Quit_ButtonAction);
         }
 		
-		void Init_Button(Button btn,UIColor color)
+		void Init_Button(Button btn,UIColor color,string cmd="")
         {
 			btn.BackgroundFilterColor=color;
 			btn.ButtonAction += new EventHandler<TouchEventArgs>(Button_Action);
+			btn_hash.Add(btn,cmd);
         }
 
         void Button_prefs_ButtonAction(object sender, TouchEventArgs e)
@@ -95,7 +99,7 @@ namespace jsw
 
 		void Button_Action(object sender, TouchEventArgs e)
         {
-	        Console.WriteLine("Touch button {0}", ((Button)sender).Text);
+	        Console.WriteLine("Touch button {0}: {1}", ((Button)sender).Text, btn_hash[sender]);
 
         }
 

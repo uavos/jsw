@@ -113,8 +113,8 @@ namespace jsw
 			scene.Info="{"+gamePadData.AnalogLeftX.ToString("+0.00;-0.00;00.00")+";"+gamePadData.AnalogLeftY.ToString("+0.00;-0.00;00.00")+"} "+
 				"{"+gamePadData.AnalogRightX.ToString("+0.00;-0.00;00.00")+";"+gamePadData.AnalogRightY.ToString("+0.00;-0.00;00.00")+"} "+
 				"{"+jsw_data.thr.ToString("0.00")+"} "+
-					"{"+jsw_data.keyData.ToString()+"}";
-					//"{"+gamePadData.Buttons.ToString()+"}";
+					//"{"+jsw_data.keyData.ToString()+"}";
+					"{"+gamePadData.Buttons.ToString()+"}";
 			scene.Comm=scene.SettingDialog.IP;
 		}
 		
@@ -138,14 +138,9 @@ namespace jsw
 
 		public static void Render ()
 		{
-			// Clear the screen
 			graphics.SetClearColor (0.0f, 0.0f, 0.0f, 0.0f);
 			graphics.Clear ();
-			
-			// Render UI Toolkit
             UISystem.Render ();
- 
-			// Present the screen
 			graphics.SwapBuffers ();
 		}
 	}
