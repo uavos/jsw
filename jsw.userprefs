@@ -1,0 +1,16 @@
+﻿<Properties>
+  <AuthorInfo Name="Aliaksei Stratsilatau" Email="sa@uavos.com" Copyright="Aliaksei Stratsilatau" Company="UAVOS GmbH" Trademark="" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="jsw\AppMain.cs">
+    <Files>
+      <File FileName="jsw\AppMain.cs" Line="69" Column="5" />
+      <File FileName="jsw\UIJswScene.cs" Line="30" Column="32" />
+      <File FileName="jsw\UISettingDialog.cs" Line="23" Column="63" />
+      <File FileName="..\sample\UI\Overlay\OverlaySample.cs" Line="15" Column="22" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
